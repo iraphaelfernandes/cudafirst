@@ -39,7 +39,7 @@
 
         mat[id] = 0;
 
-        if (i < n && j < n) {
+        if (i < n) {
         
             if (i == j) {
                 
