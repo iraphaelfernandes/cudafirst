@@ -6,7 +6,7 @@
     #include <stdio.h>
 
     //matriz quadrada
-    #define N 3
+    #define N 8
 
     // 1 0 0
     // 0 1 0
@@ -37,14 +37,13 @@
         
         int id = j*n + i; //n é a dimensão, posto
 
-        mat[id] = 0;
-
-        if (i < n) {
-        
+        if (i < n && j < n) {
             if (i == j) {
-                
                 mat[id] = 1;
-            } 
+            }
+            else {
+                mat[id] = 0;
+            }      
         }
     }
 
@@ -60,7 +59,7 @@
         // Alocar espaço na memória do device
         cudaStatus = cudaMalloc( ( void** ) &matGPU , N * N * sizeof( int ) );
 
-        dim3 grid(2, 2);
+        dim3 grid(3, 3);
         dim3 block(3, 3);
 
         ident<<<grid, block>>>(N, matGPU); //como ele executa isso?
